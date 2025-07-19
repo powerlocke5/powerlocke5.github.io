@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Cedric's game of life</title>
+    <link rel="stylesheet" href="./stylesheet.css">
+
+</head>
+
+<body class="FlexContainer">
+
+    <!--Settings-->
+    <div id="SettingsContainer">
+        <div>
+            <a href="javascript:void(0)" class="closebtn" onclick="closeSide()">&times;</a>
+            <h2>Settings</h2>
+        </div>
+        <div id="InnerSettingsContainer">
+            <!--Cell-->
+            <div class="InnerSettingBlockContainer">
+                <div class="Container_Label_Inputfelds">
+                    <div class="ContainerLabels">
+                        <label>Cells Size: </label>
+                    </div>
+                    <div class="ContainerInputfelds">
+                        <input type="number" name=InputCellsSize placeholder="Number of rect size"> </input>
+                    </div>
+                </div>
+                <div>
+                    <button class="SettingsButton" id="buttonID_CalcRowCol" onclick="calcRowCol()">Calc</button>
+                </div>
+            </div>
+            <!--Row & Col-->
+            <div class="InnerSettingBlockContainer">
+                <div class="Container_Label_Inputfelds">
+                    <div class="ContainerLabels">
+                        <label>Rows: </label>
+                    </div>
+                    <div class="ContainerInputfelds">
+                        <input type="number" name=InputNumRow placeholder="Number of row"> </input>
+                    </div>
+                </div>
+                <div class="Container_Label_Inputfelds">
+                    <div class="ContainerLabels">
+                        <label>Columns: </label>
+                    </div>
+                    <div class="ContainerInputfelds">
+                        <input type="number" name=InputNumCol placeholder="Number of col"> </input>
+                    </div>
+                </div>
+                <div>
+                    <button class="SettingsButton" id="buttonID0" onclick="buttonClickInit()">Init</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="AllContent">
+        <!--headline-->
+        <div id="headlineContainer">
+            <div>
+                <h1>
+                    <div style="text-decoration: line-through">Conway's </div>
+                    <div style="display: flex; flex-direction: row;">
+                        <div style="display: flex;">Cedric's </div>
+                        <div>&nbsp Game of Life</div>
+                    </div>
+                </h1>
+            </div>
+        </div>
+
+        <!--infos-->
+        <div id="InfoContainer">
+            <div>
+                <h2>
+                    <span>Info</span>
+                </h2>
+            </div>
+        </div>
+        <div id="ContainerContent">
+            <div>
+                Das Spiel des Lebens (englisch Conway's Game of Life) ist ein vom Mathematiker John Horton Conway
+                1970 entworfenes Spiel, basierend auf einem zweidimensionalen zellulären Automaten. Es ist eine
+                einfache und bis heute populäre Umsetzung der Automaten-Theorie von Stanisław Marcin Ulam.
+                <br>
+                „Spiel“ versteht sich dabei nicht als Gesellschafts- oder Kampfspiel, sondern als ein Geschehen, das
+                nach festgelegten einfachen Regeln abläuft.
+            </div>
+            <br>
+        </div>
+        <!--Spielregeln und Objekte Accordions-->
+        <div id="SR-OContainer">
+            <div>
+                <h2>
+                    <span>Spielregeln und Objekte</span>
+                </h2>
+            </div>
+        </div>
+
+
+        <div id="ContainerContent">
+
+            <div class="ContainerAccordionBtnImgs">
+                <button onclick="myAccordion('accordion0')" class="accordionBtn">Spielregeln</button>
+                <div id="accordion0" class="accordionHide accordionContainer">
+                    <p class="TextClassContainerHeadline">Betrachtet wird die mittlere Zelle. <br> Ihr Zustand wird von
+                        ihren Nachbarn bestimmt </p>
+                    <div id="AC_SR" class="ContainerImg">
+                        <div class="InnerContainerImg">
+                            <img src="./img/Spielregeln/willBorn.png" alt="cell will be born" title="cell will be born">
+                            <label class="TextClassContainer">Die Zelle wird in der nächste Generation geboren <br>
+                                [Anzahl Nachbarn = 3]</label>
+                        </div>
+                        <div class="InnerContainerImg">
+                            <img src="./img/Spielregeln/willStayAlive.png" alt="cell will be stay alive"
+                                title="cell will be stay alive">
+                            <label class="TextClassContainer">Die Zelle bliebt in der nächste Generation am Leben <br>
+                                [Anzahl Nachbarn = 2 | 3] </label>
+                        </div>
+                        <div class="InnerContainerImg">
+                            <img src="./img/Spielregeln/willlDie(lonliness).png" alt="cell will die (lonliness)"
+                                title="cell will die (lonliness)">
+                            <label class="TextClassContainer">Die Zelle wird in der nächsten Generation, an Einsamkeit,
+                                sterben <br> [Anzahl Nachbarn < 2]</label>
+                        </div>
+                        <div class="InnerContainerImg">
+                            <img src="./img/Spielregeln/willDie(overpopulation).png"
+                                alt="cell will die (overpopulation)" title="cell will die (overpopulation)">
+                            <label class="TextClassContainer">Die Zelle wird in der nächsten Generation, durch
+                                Überbevölkerung, sterben <br> [Anzahl Nachbar > 3]</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ContainerAccordionBtnImgs">
+                <button onclick="myAccordion('accordion1')" class="accordionBtn">Oszillierende Objekte</button>
+                <div id="accordion1" class="accordionHide accordionContainer">
+                    <div id="AC_OB" class="ContainerImg">
+                        <img src="./img/OszillierendeObjekte/OszillierendesObjekt_Bipole.gif"
+                            alt="Oszillierendes Objekt Bipole" title="Oszillierendes Objekt Bipole">
+                        <img src="./img/OszillierendeObjekte/OszillierendesObjekt_Blinker.gif"
+                            alt="Oszillierendes Objekt Blinker" title="Oszillierendes Objekt Blinker">
+                        <img src="./img/OszillierendeObjekte/OszillierendesObjekt_Kroete.gif"
+                            alt="Oszillierendes Objekt Kroete" title="Oszillierendes Objekt Kroete">
+                        <img src="./img/OszillierendeObjekte/OszillierendesObjekt_Oktagon.gif"
+                            alt="Oszillierendes Objekt Oktagon" title="Oszillierendes Objekt Oktagon">
+                        <img src="./img/OszillierendeObjekte/OszillierendesObjekt_Pulsator.gif"
+                            alt="Oszillierendes Objekt Pulsator" title="Oszillierendes Objekt Pulsator">
+                        <img src="./img/OszillierendeObjekte/OszillierendesObjekt_Tripole.gif"
+                            alt="Oszillierendes Objekt Tripole" title="Oszillierendes Objekt Tripole">
+                        <img src="./img/OszillierendeObjekte/OszillierendesObjekt_Tuemmler.gif"
+                            alt="Oszillierendes Objekt Tuemmler" title="Oszillierendes Objekt Tuemmler">
+                        <img src="./img/OszillierendeObjekte/OszillierendesObjekt_Uhr.gif"
+                            alt="Oszillierendes Objekt Uhr" title="Oszillierendes Objekt Uhr">
+                    </div>
+                </div>
+            </div>
+            <div class="ContainerAccordionBtnImgs">
+                <button onclick="myAccordion('accordion2')" class="accordionBtn">Raumschiffe & Gleiter</button>
+                <div id="accordion2" class="accordionHide accordionContainer">
+                    <div id="AC_RG" class="ContainerImg">
+                        <div>
+                            <img src="./img/Raumschiffe&Gleiter/Gleiter_animiert.gif" alt="Gleiter animiert"
+                                title="Gleiter animiert">
+                            <img src="./img/Raumschiffe&Gleiter/Gleiter_statisch.gif" alt="Gleiter statisch"
+                                title="Gleiter statisch">
+                        </div>
+                        <img src="./img/Raumschiffe&Gleiter/Raumschiffe_animiert.gif" alt="Raumschiffe animiert"
+                            title="Raumschiffe animiert">
+                        <div>
+                            <img src="./img/Raumschiffe&Gleiter/Segler1_statisch.png" alt="Segler 1 statisch"
+                                title="Segler 1 statisch">
+                            <img src="./img/Raumschiffe&Gleiter/Segler2_statisch.png" alt="Segler 2 statisch"
+                                title="Segler 2 statisch">
+                            <img src="./img/Raumschiffe&Gleiter/Segler3_statisch.png" alt="Segler 3 statisch"
+                                title="Segler 3 statisch">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ContainerAccordionBtnImgs">
+                <button onclick="myAccordion('accordion3')" class="accordionBtn">Statische Objekte</button>
+                <div id="accordion3" class="accordionHide accordionContainer">
+                    <div id="AC_SO" class="ContainerImg">
+                        <img src="./img/StatischeObjekte/StatischesObjekt_Bienenstock.png"
+                            alt="Statisches Objekt Bienenstock" title="Statisches Objekt Bienenstock">
+                        <img src="./img/StatischeObjekte/StatischesObjekt_Block.png" alt="Statisches Objekt Block"
+                            title="Statisches Objekt Block">
+                        <img src="./img/StatischeObjekte/StatischesObjekt_Boot.png" alt="Statisches Objekt Boot"
+                            title="Statisches Objekt Boot">
+                        <img src="./img/StatischeObjekte/StatischesObjekt_Brotlaib.png" alt="Statisches Objekt Brotlaib"
+                            title="Statisches Objekt Brotlaib">
+                        <img src="./img/StatischeObjekte/StatischesObjekt_Fresser.png" alt="Statisches Objekt Fresser"
+                            title="Statisches Objekt Fresser">
+                        <img src="./img/StatischeObjekte/StatischesObjekt_Kahn.png" alt="Statisches Objekt Kahn"
+                            title="Statisches Objekt Kahn">
+                        <img src="./img/StatischeObjekte/StatischesObjekt_Kuebel.png" alt="Statisches Objekt Kuebel"
+                            title="Statisches Objekt Kuebel">
+                        <img src="./img/StatischeObjekte/StatischesObjekt_Teich.png" alt="Statisches Objekt Teich"
+                            title="Statisches Objekt Teich">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <cite>
+            <p> Quelle: <a href="https://de.wikipedia.org/wiki/Conways_Spiel_des_Lebens#Conways%20Spiel%20des%20Lebens">
+                    Wikipedia: Conways Spiel des Lebens</a>
+            </p>
+        </cite>
+        <!--Canvas Control-->
+        <div id="Canvas_Control_Container">
+            <!-- control buttons-->
+            <div id="ControlContainer">
+                <!--SettingsButton-->
+                <div id="ContainerSettingsBtn">
+                    <span onclick="openSide()">&#9776;</span>
+                </div>
+                <!-- Rectangular switch -->
+                <div id="ContainerSwitchLabels">
+                    <div class="ToggleLabels">OFF</div>
+                    <div>
+                        <label class="switch">
+                            <input id="inputToggleSwitch" type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="ToggleLabels">ON</div>
+                </div>
+                <!--range slider-->
+                <div id="InputRngeSlider">
+                    <div>
+                        <input id="InputRangeID" type="range" min="50" max="1000" step="50" value="100">
+                    </div>
+                    <div>
+                        <div>
+                            <output id="InputRangeValueID"></output>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Canvas-->
+            <div id="CanvasContainer">
+                <canvas id="canvasID"></canvas>
+            </div>
+            <!-- info panel-->
+            <!--
+            <div id="InfoPanelContainer">
+                <div class="spaceClass">Generation:</div>
+                <output id=InfoGC></output>
+            </div> 
+            -->
+            <div id="table-wrapper">
+                <div id="table-scroll">
+                    <table id="tableStatistics">
+                        <!--
+                        <tr>
+                            <th>Generation</th>
+                            <th>Anzahl Zellen gesamt</th>
+                            <th>Anzahl Zellen lebendig </th>
+                            <th>Anzahl Zellen unlebendig </th>
+                            
+                        </tr>
+                        -->
+
+                        <tr>
+                            <th>Generation</th>
+                            <th>bornt</th>
+                            <th>SumStayedAlive</th>
+                            <th>StayedAlive_min</th>
+                            <th>StayedAlive_max</th>
+                            <th>SumDied</th>
+                            <th>Died_lon.</th>
+                            <th>Died_overp.</th>
+                            <th>(bornt + SAlive) - SDied</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+    <script src="./javaScript.js"></script>
+</body>
+
+</html>

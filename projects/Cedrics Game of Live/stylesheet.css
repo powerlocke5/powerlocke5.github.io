@@ -1,0 +1,329 @@
+.FlexContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    height: max-content;
+}
+
+#AllContent {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    transition: margin-left .5s;
+    padding: 5px;
+}
+
+body {
+    margin: 0px;
+    transition: background-color .5s;
+}
+
+h1 {
+    padding: 20px;
+    font-size: 48px;
+}
+
+h2 {
+    text-decoration: underline;
+}
+
+#headlineContainer {
+    display: flex;
+    flex: 100%;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.accordionBtn {
+    width: 100%;
+    height: 25px;
+    text-align: left;
+    background-color: green;
+    border-width: 1px;
+    margin-bottom: -1px;
+}
+
+.accordionContainer {
+    border-width: 1px;
+    border-color: gray;
+    border-style: none none none solid;
+    border-radius: 3px;
+    margin-bottom: 5px;
+}
+
+.accordionShow {
+    display: block !important;
+}
+
+.accordionHide {
+    display: none;
+}
+
+.ContainerImg {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10px;
+
+}
+
+.InnerContainerImg {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+
+
+}
+
+
+.TextClassContainerHeadline {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    font-size: 16px;
+}
+
+.TextClassContainer {
+    width: 150px;
+    text-align: center;
+    font-size: 14px;
+}
+
+
+
+img {
+    width: min-content;
+    padding: 5px;
+
+}
+
+#SettingsContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 0;
+    height: 100%;
+
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(66, 66, 66);
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+
+#ContainerSettingsBtn {
+
+    font-size: 32px;
+    cursor: pointer;
+}
+
+.closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+#InnerSettingsContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.InnerSettingBlockContainer {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 50px;
+}
+
+input {
+    width: 48px;
+    height: max-content;
+}
+
+.Container_Label_Inputfelds {
+    display: flex;
+    padding: 5px 0px 5px 0px;
+    width: 150px;
+}
+
+.ContainerLabels {
+    flex: 75%;
+    padding-right: 5px;
+}
+
+.ContainerInputfelds {
+    flex: 25%;
+    padding-left: 5px;
+}
+
+#Canvas_Control_Container {
+    display: flex;
+    flex: 80%;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    padding: 5px;
+}
+
+#ControlContainer {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    margin: 5px;
+}
+
+#CanvasContainer {
+    display: flex;
+    
+    justify-content: center;
+
+    margin: 5px;
+}
+
+#InfoContainer {
+    display: flex;
+    align-items: center;
+
+    margin: 5px;
+}
+
+#ContainerSwitchLabels {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.ToggleLabels {
+    padding: 10px;
+}
+
+.SettingsButton {
+    font-size: 12px;
+    width: 150px;
+    height: 24px;
+    margin: 5px 0px 5px 0px;
+}
+
+#InfoPanelContainer {
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+    justify-content: center;
+}
+
+#ContainerContent {
+    display: flex;
+    flex: 80%;
+    flex-direction: column;
+    padding: 0px 15px 0px 15px;
+}
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: green;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px green;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+#InputRngeSlider {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 5px;
+}
+
+#InputRangeID {
+    width: 100px;
+}
+
+.spaceClass {
+    padding: 0px 10px 0px 10px
+}
+
+td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+#table-wrapper {
+    position: relative;
+}
+
+#table-scroll {
+    height: 150px;
+    overflow: auto;
+    margin-top: 20px;
+}
+
+#table-wrapper table {
+    width: 100%;
+
+}
+
